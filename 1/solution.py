@@ -1,8 +1,8 @@
+# https://adventofcode.com/2024/day/1
 from collections import Counter
 
 INPUT_FILE = "input"
 
-# https://adventofcode.com/2024/day/1
 if __name__ == "__main__":
     left = []
     right = []

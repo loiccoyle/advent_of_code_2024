@@ -1,3 +1,4 @@
+# https://adventofcode.com/2024/day/2
 INPUT_FILE = "input"
 
 
@@ -22,7 +23,6 @@ def is_safe(report: list[int]) -> bool:
     return True
 
 
-# https://adventofcode.com/2024/day/2
 if __name__ == "__main__":
     with open(INPUT_FILE) as fp:
         input = [list(map(int, line.split())) for line in fp.readlines()]
