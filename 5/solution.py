@@ -21,13 +21,12 @@ def reorder(update: list[int], update_graph: DefaultDict[int, set]) -> list[int]
     pages = set(update)
     for page in update:
         good_order_graph[page] = update_graph[page].intersection(pages)
-    good_order_graph = [
+    return [
         k
         for (k, _) in sorted(
             good_order_graph.items(), key=lambda k_v: len(k_v[1]), reverse=True
         )
     ]
-    return good_order_graph
 
 
 if __name__ == "__main__":
