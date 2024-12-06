@@ -1,5 +1,4 @@
 # https://adventofcode.com/2024/day/6
-from itertools import cycle
 
 INPUT = "input"
 TEST_INPUT = "test_input"
