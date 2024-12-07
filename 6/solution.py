@@ -1,4 +1,6 @@
 # https://adventofcode.com/2024/day/6
+from typing import Iterator
+
 
 INPUT = "input"
 TEST_INPUT = "test_input"
@@ -23,7 +25,7 @@ def right(start: tuple[int, int]) -> tuple[int, int]:
 DIRECTION_CYCLE = [up, right, down, left]
 
 
-def find_start(content) -> tuple[int, int]:
+def find_start(content: list[list[str]]) -> tuple[int, int]:
     for y, row in enumerate(content):
         for x, col in enumerate(row):
             if col == "^":
@@ -32,7 +34,7 @@ def find_start(content) -> tuple[int, int]:
     raise ValueError("No start '^' found.")
 
 
-def find_obstacles(content) -> set[tuple[int, int]]:
+def find_obstacles(content: list[list[str]]) -> set[tuple[int, int]]:
     out = set()
     for y, row in enumerate(content):
         for x, col in enumerate(row):
@@ -47,7 +49,7 @@ def walk_map(
     max_x: int,
     max_y: int,
     direction_i: int = 0,
-):
+) -> Iterator[tuple[int, int, int]]:
     direction_i %= 4
     (x, y) = start
     direction = DIRECTION_CYCLE[direction_i]
