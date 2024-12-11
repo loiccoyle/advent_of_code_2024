@@ -1,3 +1,4 @@
+# https://adventofcode.com/2024/day/11
 from collections import deque, Counter
 
 

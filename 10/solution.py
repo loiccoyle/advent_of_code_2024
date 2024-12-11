@@ -1,3 +1,4 @@
+# https://adventofcode.com/2024/day/10
 from collections import deque
 
 INPUT = "input"
