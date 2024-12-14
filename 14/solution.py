@@ -11,7 +11,7 @@ TEST_INPUT = "test_input"
 TEST_DIM = (11, 7)
 
 
-def parse_input(content_raw: str):
+def parse_input(content_raw: str) -> tuple[np.ndarray, np.ndarray]:
     pattern = re.compile(r"p=(\d*),(\d*) v=(-?\d*),(-?\d*)")
     pos_vel = np.array(
         [tuple(map(int, match)) for match in re.findall(pattern, content_raw)]
@@ -21,12 +21,14 @@ def parse_input(content_raw: str):
     return pos, vel
 
 
-def simulate(pos, vel, steps: int = 100, dimensions: tuple[int, int] = INPUT_DIM):
+def simulate(
+    pos, vel, steps: int = 100, dimensions: tuple[int, int] = INPUT_DIM
+) -> np.ndarray:
     result = pos + vel * steps
     return np.mod(result, dimensions)
 
 
-def quadrant_count(pos, dimensions: tuple[int, int] = INPUT_DIM):
+def quadrant_count(pos, dimensions: tuple[int, int] = INPUT_DIM) -> int:
     v_line = dimensions[0] // 2
     h_line = dimensions[1] // 2
     top_left = ((pos[:, 0] < v_line) & (pos[:, 1] < h_line)).sum()
