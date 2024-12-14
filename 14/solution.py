@@ -23,7 +23,6 @@ def parse_input(content_raw: str):
 
 def simulate(pos, vel, steps: int = 100, dimensions: tuple[int, int] = INPUT_DIM):
     result = pos + vel * steps
-    # return result
     return np.mod(result, dimensions)
 
 
@@ -34,7 +33,6 @@ def quadrant_count(pos, dimensions: tuple[int, int] = INPUT_DIM):
     top_right = ((pos[:, 0] > v_line) & (pos[:, 1] < h_line)).sum()
     bottom_left = ((pos[:, 0] < v_line) & (pos[:, 1] > h_line)).sum()
     bottom_right = ((pos[:, 0] > v_line) & (pos[:, 1] > h_line)).sum()
-    print(top_left, top_right, bottom_left, bottom_right)
     return top_left * top_right * bottom_left * bottom_right
 
 
