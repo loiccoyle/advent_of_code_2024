@@ -22,13 +22,16 @@ def parse_input(content_raw: str) -> tuple[np.ndarray, np.ndarray]:
 
 
 def simulate(
-    pos, vel, steps: int = 100, dimensions: tuple[int, int] = INPUT_DIM
+    pos: np.ndarray,
+    vel: np.ndarray,
+    steps: int = 100,
+    dimensions: tuple[int, int] = INPUT_DIM,
 ) -> np.ndarray:
     result = pos + vel * steps
     return np.mod(result, dimensions)
 
 
-def quadrant_count(pos, dimensions: tuple[int, int] = INPUT_DIM) -> int:
+def quadrant_count(pos: np.ndarray, dimensions: tuple[int, int] = INPUT_DIM) -> int:
     v_line = dimensions[0] // 2
     h_line = dimensions[1] // 2
     top_left = ((pos[:, 0] < v_line) & (pos[:, 1] < h_line)).sum()
