@@ -8,7 +8,7 @@ from PIL import Image
 INPUT = "input"
 INPUT_DIM = (101, 103)
 TEST_INPUT = "test_input"
-TEST_DIM = (11, 7)
+TEST_INPUT_DIM = (11, 7)
 
 
 def parse_input(content_raw: str) -> tuple[np.ndarray, np.ndarray]:
