@@ -90,10 +90,10 @@ def box_sum(layout: LayoutType) -> int:
 def widden_layout(content: list[str]) -> Iterable[str]:
     for line in content:
         yield (
-            line.replace(WALL, "##")
-            .replace(EMPTY, "..")
-            .replace(BOX, "[]")
-            .replace(ROBOT, "@.")
+            line.replace(WALL, WALL * 2)
+            .replace(EMPTY, EMPTY * 2)
+            .replace(BOX, BOX_WIDE)
+            .replace(ROBOT, ROBOT + EMPTY)
         )
 
 
@@ -115,14 +115,9 @@ def move_wide(
                 layout = move_wide(layout, MOVEMENTS[RIGHT](next_pos), direction)
             else:
                 layout = move_wide(layout, MOVEMENTS[LEFT](next_pos), direction)
-
-            layout = move_wide(layout, next_pos, direction)
-            layout[next_pos[1]][next_pos[0]] = layout[pos[1]][pos[0]]
-            layout[pos[1]][pos[0]] = EMPTY
-        else:
-            layout = move_wide(layout, next_pos, direction)
-            layout[next_pos[1]][next_pos[0]] = layout[pos[1]][pos[0]]
-            layout[pos[1]][pos[0]] = EMPTY
+        layout = move_wide(layout, next_pos, direction)
+        layout[next_pos[1]][next_pos[0]] = layout[pos[1]][pos[0]]
+        layout[pos[1]][pos[0]] = EMPTY
 
     return layout
 
