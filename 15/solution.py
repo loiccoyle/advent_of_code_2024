@@ -50,13 +50,10 @@ def move(
     next_pos_value = layout[next_pos[1]][next_pos[0]]
     if next_pos_value == WALL:
         raise Wall
-    elif next_pos_value == EMPTY:
-        layout[next_pos[1]][next_pos[0]] = layout[pos[1]][pos[0]]
-        layout[pos[1]][pos[0]] = EMPTY
     elif next_pos_value == BOX:
         layout = move(layout, next_pos, direction)
-        layout[next_pos[1]][next_pos[0]] = layout[pos[1]][pos[0]]
-        layout[pos[1]][pos[0]] = EMPTY
+    layout[next_pos[1]][next_pos[0]] = layout[pos[1]][pos[0]]
+    layout[pos[1]][pos[0]] = EMPTY
     return layout
 
 
@@ -105,9 +102,6 @@ def move_wide(
     next_pos_value = layout[next_pos[1]][next_pos[0]]
     if next_pos_value == WALL:
         raise Wall
-    elif next_pos_value == EMPTY:
-        layout[next_pos[1]][next_pos[0]] = layout[pos[1]][pos[0]]
-        layout[pos[1]][pos[0]] = EMPTY
     elif next_pos_value in BOX_WIDE:
         if direction == MOVEMENTS[DOWN] or direction == MOVEMENTS[UP]:
             # add the otherside of the box to the compute tree
@@ -116,8 +110,8 @@ def move_wide(
             else:
                 layout = move_wide(layout, MOVEMENTS[LEFT](next_pos), direction)
         layout = move_wide(layout, next_pos, direction)
-        layout[next_pos[1]][next_pos[0]] = layout[pos[1]][pos[0]]
-        layout[pos[1]][pos[0]] = EMPTY
+    layout[next_pos[1]][next_pos[0]] = layout[pos[1]][pos[0]]
+    layout[pos[1]][pos[0]] = EMPTY
 
     return layout
 
